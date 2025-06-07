@@ -1,0 +1,1953 @@
+    <!DOCTYPE html>
+    <html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <title>Buzio Relax</title>
+        <style>
+            /* Reset básico e estilos gerais */
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+            
+            body {
+                font-family: 'Arial', sans-serif;
+                line-height: 1.6;
+                color: #333;
+            }
+            
+            /* Container principal */
+            .container {
+                width: 90%;
+                max-width: 1200px;
+                margin: 0 auto;
+            }
+            
+            
+            
+            .header-content {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+            
+            .logo {
+                height: 60px; /* Ajuste conforme necessário */
+            }
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            /* Responsividade */
+            @media (max-width: 768px) {
+                .header-content {
+                    flex-direction: column;
+                }
+                
+                .logo {
+                    margin-bottom: 15px;
+                }
+                
+                
+                
+                
+            }
+        </style>
+    </head>
+    <body>
+        <!-- Cabeçalho -->
+<header>
+    <!-- Logo no canto esquerdo -->
+    <div class="header-logo">
+        <img src="logo.png" alt="Buzio Relax" class="logo-img">
+    </div>
+    
+    <!-- Menu dropdown no canto direito -->
+    <div class="dropdown-menu">
+        <button class="dropdown-btn">Menu ☰</button>
+        <div class="dropdown-content">
+            <a href="#">Home</a>
+            <a href="#">Sobre Nós</a>
+            <a href="#">Nossos Quartos</a>
+            <a href="#">Restaurante</a>
+            <a href="#">Transporte</a>
+            <a href="#">Contato</a>
+        </div>
+    </div>
+</header>
+
+<style>
+    /* Estilos do Header */
+    header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 20px;
+        background-color: transparent;
+        z-index: 1000;
+    }
+    
+    .header-logo .logo-img {
+        height: 50px;
+        width: auto;
+    }
+    
+    /* Estilos do Dropdown */
+    .dropdown-menu {
+        position: relative;
+        display: inline-block;
+    }
+    
+    .dropdown-btn {
+        background-color: rgba(255, 255, 255, 0.8);
+        color: #333;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: all 0.3s;
+    }
+    
+    .dropdown-btn:hover {
+        background-color: rgba(255, 255, 255, 0.9);
+    }
+    
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        right: 0;
+        background-color: rgba(255, 255, 255, 0.95);
+        min-width: 180px;
+        box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        border-radius: 4px;
+        z-index: 1;
+    }
+    
+    .dropdown-content a {
+        color: #333;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        transition: background-color 0.3s;
+    }
+    
+    .dropdown-content a:hover {
+        background-color: #f1f1f1;
+    }
+    
+    .show {
+        display: block;
+        animation: fadeIn 0.3s;
+    }
+    
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(-10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    
+    /* Ajuste para o slideshow ficar abaixo do header */
+    .slideshow-container {
+        margin-top: 80px; /* Aumente este valor se precisar de mais espaço */
+    }
+</style>
+
+<script>
+    // Abrir/Fechar dropdown
+    document.querySelector('.dropdown-btn').addEventListener('click', function() {
+        document.querySelector('.dropdown-content').classList.toggle('show');
+    });
+    
+    // Fechar ao clicar fora
+    window.addEventListener('click', function(event) {
+        if (!event.target.matches('.dropdown-btn') && !event.target.closest('.dropdown-content')) {
+            var dropdowns = document.getElementsByClassName("dropdown-content");
+            for (var i = 0; i < dropdowns.length; i++) {
+                var openDropdown = dropdowns[i];
+                if (openDropdown.classList.contains('show')) {
+                    openDropdown.classList.remove('show');
+                }
+            }
+        }
+    });
+</script>
+</header>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Slideshow/Carrossel -->
+    <div class="slideshow-container" style="margin-top: 0;">
+        <!-- Imagens do slideshow -->
+        <div class="mySlides fade">
+            <img src="slide (1).jpg" style="width:100%">
+        </div>
+        <div class="mySlides fade">
+            <img src="slide (2).jpg" style="width:100%">
+        </div>
+        <div class="mySlides fade">
+            <img src="slide (3).jpg" style="width:100%">
+        </div>
+        
+        <!-- Botões de navegação -->
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+    </div>
+
+    <!-- Pontos indicadores -->
+    <div class="dots">
+        <span class="dot" onclick="currentSlide(1)"></span> 
+        <span class="dot" onclick="currentSlide(2)"></span> 
+        <span class="dot" onclick="currentSlide(3)"></span> 
+    </div>
+
+    <style>
+        .slideshow-container {
+            position: relative;
+            width: 100%;
+            margin: 0 auto; /* Removido o margin-top que causava o espaço */
+            overflow: hidden;
+            padding-top: 80px;
+        }
+        .mySlides { display: none; }
+        .mySlides img { width: 100%; }
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 16px;
+            margin-top: -22px;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            transition: 0.6s ease;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+            background-color: rgba(0,0,0,0.5);
+        }
+        .next { right: 0; border-radius: 3px 0 0 3px; }
+        .prev:hover, .next:hover { background-color: rgba(0,0,0,0.8); }
+        .dots { text-align: center; margin-top: 15px; }
+        .dot {
+            cursor: pointer;
+            height: 15px;
+            width: 15px;
+            margin: 0 5px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            transition: background-color 0.6s ease;
+        }
+        .active, .dot:hover { background-color: #717171; }
+        .fade { animation: fade 1.5s; }
+        @keyframes fade { from {opacity: .4} to {opacity: 1} }
+    </style>
+
+    <script>
+        let slideIndex = 1;
+        showSlides(slideIndex);
+        function plusSlides(n) { showSlides(slideIndex += n); }
+        function currentSlide(n) { showSlides(slideIndex = n); }
+        function showSlides(n) {
+            let slides = document.getElementsByClassName("mySlides");
+            let dots = document.getElementsByClassName("dot");
+            if (n > slides.length) slideIndex = 1;
+            if (n < 1) slideIndex = slides.length;
+            for (let i = 0; i < slides.length; i++) slides[i].style.display = "none";
+            for (let i = 0; i < dots.length; i++) dots[i].className = dots[i].className.replace(" active", "");
+            slides[slideIndex-1].style.display = "block";
+            dots[slideIndex-1].className += " active";
+        }
+        setInterval(() => plusSlides(1), 5000);
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="reserva-container" style="position: absolute; top: 20px; right: 20px; z-index: 1000; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); width: 300px;">
+        <h2 style="text-align: center; margin-bottom: 20px; color: #333;">RESERVE CONNOSCO AGORA</h2>
+        
+        <form id="reserva-form">
+            <div style="margin-bottom: 15px;">
+                <h3 style="margin-bottom: 10px; font-size: 16px; color: #555;">Chegada</h3>
+                <input type="date" id="chegada" style="width: 100%; padding: 8px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 4px;">
+                
+                <h3 style="margin-bottom: 10px; font-size: 16px; color: #555;">Partida</h3>
+                <input type="date" id="partida" style="width: 100%; padding: 8px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 4px;">
+                
+                <h3 style="margin-bottom: 10px; font-size: 16px; color: #555;">Adultos</h3>
+                <select id="adultos" style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px;">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+            </div>
+            
+            <div style="margin-bottom: 15px;">
+                <h3 style="margin-bottom: 10px; font-size: 16px; color: #555;">Crianças</h3>
+                <select id="criancas" style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px;">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+            </div>
+            
+            <div style="margin-bottom: 20px;">
+                <h3 style="margin-bottom: 10px; font-size: 16px; color: #555;">Seu Nome</h3>
+                <input type="text" id="nome" style="width: 100%; padding: 8px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 4px;" required>
+                
+                <h3 style="margin-bottom: 10px; font-size: 16px; color: #555;">Telefone (WhatsApp)</h3>
+                <input type="tel" id="telefone" style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px;" placeholder="+238 XXX XXX XXX" required>
+            </div>
+            
+            <button type="button" onclick="enviarReserva()" style="width: 100%; padding: 12px; background-color: #25D366; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white" style="margin-right: 8px;">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                </svg>
+                Enviar Reserva por WhatsApp
+            </button>
+        </form>
+    </div>
+
+    <script>
+    function enviarReserva() {
+        const chegada = document.getElementById('chegada').value;
+        const partida = document.getElementById('partida').value;
+        const adultos = document.getElementById('adultos').value;
+        const criancas = document.getElementById('criancas').value;
+        const nome = document.getElementById('nome').value;
+        const telefone = document.getElementById('telefone').value;
+        
+        if (!nome || !telefone) {
+            alert('Por favor, preencha seu nome e telefone');
+            return;
+        }
+        
+        // Formatar as datas para exibição
+        const chegadaFormatada = chegada ? new Date(chegada).toLocaleDateString('pt-BR') : 'Não informada';
+        const partidaFormatada = partida ? new Date(partida).toLocaleDateString('pt-BR') : 'Não informada';
+        
+        // Criar mensagem para WhatsApp
+        const mensagem = `Olá, gostaria de fazer uma reserva:
+        
+    Nome: ${nome}
+    Telefone: ${telefone}
+    Data de Chegada: ${chegadaFormatada}
+    Data de Partida: ${partidaFormatada}
+    Adultos: ${adultos}
+    Crianças: ${criancas}`;
+        
+        // Codificar a mensagem para URL
+        const mensagemCodificada = encodeURIComponent(mensagem);
+        
+        // Abrir WhatsApp (substitua pelo número correto)
+        window.open(`https://wa.me/+238XXXXXXXXX?text=${mensagemCodificada}`, '_blank');
+    }
+    </script>
+    <!-- ADICIONE ESTE CÓDIGO NOVO (substituindo o antigo #reserva-container) -->
+    <style>
+        /* ESTILOS DO FORMULÁRIO - SUBSTITUA TODO O CSS ANTERIOR */
+        #reserva-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 100;
+            display: none;
+        }
+        
+        #reserva-container {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 101;
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 30px rgba(0,0,0,0.3);
+            width: 90%;
+            max-width: 350px;
+            display: none; /* Inicia oculto */
+        }
+        
+        /* Botão para abrir o formulário */
+        .btn-reserva {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 99;
+            background: #25D366;
+            color: white;
+            border: none;
+            padding: 15px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        #reserva-container {
+        position: fixed;
+        left: 50%;
+        top: auto; /* Remove o posicionamento vertical fixo */
+        bottom: 50px; /* Posiciona a partir da base */
+        transform: translateX(-50%); /* Apenas centraliza horizontalmente */
+        z-index: 101;
+        max-height: 80vh; /* Limita a altura */
+        overflow-y: auto; /* Adiciona scroll se necessário */
+    }
+
+    /* Em telas maiores, centraliza verticalmente */
+    @media (min-width: 768px) {
+        #reserva-container {
+            top: 50%;
+            bottom: auto;
+            transform: translate(-50%, -50%);
+        }
+    }   
+    </style>
+
+    <!-- HTML DO FORMULÁRIO - SUBSTITUA O ANTIGO -->
+    <div id="reserva-overlay"></div>
+
+    <button class="btn-reserva" onclick="mostrarReserva()">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M..."></svg>
+        Reservar Agora
+    </button>
+
+    <div id="reserva-container">
+        <!-- Mantenha aqui todo o conteúdo do seu formulário atual -->
+        <h2 style="text-align: center; margin-bottom: 20px; color: #333;">RESERVE CONNOSCO AGORA</h2>
+        <form id="reserva-form">
+            <!-- ... todo o restante do seu formulário existente ... -->
+        </form>
+    </div>
+
+    <script>
+    // NOVO JAVASCRIPT - SUBSTITUA O ANTERIOR
+    function mostrarReserva() {
+        document.getElementById('reserva-overlay').style.display = 'block';
+        document.getElementById('reserva-container').style.display = 'block';
+    }
+
+    function esconderReserva() {
+        document.getElementById('reserva-overlay').style.display = 'none';
+        document.getElementById('reserva-container').style.display = 'none';
+    }
+
+    // Adicione este evento para fechar ao clicar fora
+    document.getElementById('reserva-overlay').addEventListener('click', esconderReserva);
+
+    // Mantenha sua função enviarReserva() existente
+    function enviarReserva() {
+        // ... seu código atual de envio ...
+    }
+    function enviarReserva() {
+        // Obter valores do formulário
+        const chegada = document.getElementById('chegada').value;
+        const partida = document.getElementById('partida').value;
+        const adultos = document.getElementById('adultos').value;
+        const criancas = document.getElementById('criancas').value;
+        const nome = document.getElementById('nome').value;
+        const telefone = document.getElementById('telefone').value;
+        
+        // Validação dos campos obrigatórios
+        if (!nome || !telefone) {
+            alert('Por favor, preencha seu nome e telefone');
+            return;
+        }
+        
+        // Formatar as datas para exibição
+        const formatarData = (dataString) => {
+            if (!dataString) return 'Não informada';
+            const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
+            return new Date(dataString).toLocaleDateString('pt-BR', options);
+        };
+        
+        // Criar mensagem formatada para WhatsApp
+        const mensagem = `📅 *NOVA RESERVA* 📅
+        
+    *Nome:* ${nome}
+    *Telefone:* ${telefone}
+
+    📆 *Datas:*
+    - Chegada: ${formatarData(chegada)}
+    - Partida: ${formatarData(partida)}
+
+    👥 *Hóspedes:*
+    - Adultos: ${adultos}
+    - Crianças: ${criancas}
+
+    _Reserva enviada através do site_`;
+
+        // Codificar a mensagem para URL
+        const mensagemCodificada = encodeURIComponent(mensagem);
+        
+        // Número de WhatsApp (substitua X pelo número completo)
+        const numeroWhatsApp = '+2389340975';
+        
+        // Abrir WhatsApp com a mensagem
+        window.open(`https://wa.me/${numeroWhatsApp}?text=${mensagemCodificada}`, '_blank');
+        
+        // Opcional: Fechar o formulário após enviar
+        esconderReserva();
+        
+        // Opcional: Limpar o formulário
+        document.getElementById('reserva-form').reset();
+    }
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="quartos-section">
+    <div class="container">
+        <h2 class="section-title">Nossos Quartos</h2>
+        
+        <div class="quartos-grid">
+            <!-- Quarto 1 -->
+            <div class="quarto-card">
+                <div class="quarto-img" style="background-image: url('BungalowDeluxe.jpg');"></div>
+                <h3>Bungalow Deluxe</h3>
+                <p>Conforto sofisticado com vista para o mar, equipado com varanda privativa e amenities de luxo.</p>
+            </div>
+            
+            <!-- Quarto 2 -->
+            <div class="quarto-card">
+                <div class="quarto-img" style="background-image: url('BungalowFamiliar.jpg');"></div>
+                <h3>Bungalow Familiar</h3>
+                <p>Amplo espaço para famílias, com dois quartos separados e área de convívio.</p>
+            </div>
+            
+            <!-- Quarto 3 -->
+            <div class="quarto-card">
+                <div class="quarto-img" style="background-image: url('BungalowSuperior.jpg');"></div>
+                <h3>Bungalow Superior</h3>
+                <p>Experiência premium com piscina privativa e serviço de mordomo 24 horas.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    /* Estilos da seção de quartos */
+    .quartos-section {
+        padding: 60px 0;
+        background-color: #f9f9f9;
+    }
+    
+    .container {
+        width: 90%;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    
+    .section-title {
+        text-align: center;
+        margin-bottom: 40px;
+        font-size: 32px;
+        color: #2a3a4b;
+        position: relative;
+    }
+    
+    .section-title:after {
+        content: "";
+        display: block;
+        width: 80px;
+        height: 3px;
+        background: #4CAF50;
+        margin: 15px auto 0;
+    }
+    
+    .quartos-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+    }
+    
+    .quarto-card {
+        background: white;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        transition: transform 0.3s ease;
+    }
+    
+    .quarto-card:hover {
+        transform: translateY(-10px);
+    }
+    
+    .quarto-img {
+        height: 200px;
+        background-size: cover;
+        background-position: center;
+    }
+    
+    .quarto-card h3 {
+        padding: 20px 20px 10px;
+        color: #2a3a4b;
+        font-size: 22px;
+    }
+    
+    .quarto-card p {
+        padding: 0 20px 20px;
+        color: #666;
+        line-height: 1.6;
+    }
+    
+    .saiba-mais-btn {
+        display: inline-block;
+        margin: 0 20px 20px;
+        padding: 10px 20px;
+        background: #4CAF50;
+        color: white;
+        text-decoration: none;
+        border-radius: 4px;
+        transition: background 0.3s;
+    }
+    
+    .saiba-mais-btn:hover {
+        background: #3e8e41;
+    }
+    
+    @media (max-width: 768px) {
+        .quartos-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="restaurante-section">
+    <div class="container">
+        <h2 class="section-title">Nosso Restaurante</h2>
+        
+        <div class="restaurante-content">
+            <div class="restaurante-img">
+                <div class="slideshow-container">
+                    <!-- Slides -->
+                    <div class="mySlides fade">
+                        <img src="rest (1).jpg" alt="Restaurante Buzio Relax">
+                    </div>
+                    <div class="mySlides fade">
+                        <img src="rest (2).jpg" alt="Interior do restaurante">
+                    </div>
+                    <div class="mySlides fade">
+                        <img src="rest (3).jpg" alt="Pratos do restaurante">
+                    </div>
+                    <div class="mySlides fade">
+                        <img src="rest (4).jpg" alt="Restaurante Buzio Relax">
+                    </div>
+                    <div class="mySlides fade">
+                        <img src="rest (5).jpg" alt="Interior do restaurante">
+                    </div>
+                    <div class="mySlides fade">
+                        <img src="rest (6).jpg" alt="Pratos do restaurante">
+                    </div>
+                    <div class="mySlides fade">
+                        <img src="rest (7).jpg" alt="Restaurante Buzio Relax">
+                    </div>
+                    <div class="mySlides fade">
+                        <img src="rest (8).jpg" alt="Interior do restaurante">
+                    </div>
+                    <div class="mySlides fade">
+                        <img src="rest (9).jpg" alt="Pratos do restaurante">
+                    </div>
+                    <div class="mySlides fade">
+                        <img src="rest (10).jpg" alt="Pratos do restaurante">
+                    </div>
+                    <div class="mySlides fade">
+                        <img src="rest (11).jpg" alt="Pratos do restaurante">
+                    </div>
+                    <div class="mySlides fade">
+                        <img src="rest (12).jpg" alt="Pratos do restaurante">
+                    </div>
+                    <div class="mySlides fade">
+                        <img src="rest (13).jpg" alt="Pratos do restaurante">
+                    </div>
+                    
+                    <!-- Botões de navegação -->
+                    <a class="prev" onclick="plusSlides(-1)">❮</a>
+                    <a class="next" onclick="plusSlides(1)">❯</a>
+                    
+                    <!-- Indicadores -->
+                    <div class="dots-container">
+                        <span class="dot" onclick="currentSlide(1)"></span>
+                        <span class="dot" onclick="currentSlide(2)"></span>
+                        <span class="dot" onclick="currentSlide(3)"></span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="restaurante-info">
+                <h3>Experiência Gastronômica Única</h3>
+                <p>Nosso restaurante oferece uma fusão da culinária internacional com sabores locais, preparados com ingredientes frescos e selecionados.</p>
+                
+                <div class="destaques">
+                    <div class="destaque-item">
+                        <i class="icon">🍽️</i>
+                        <h4>Cozinha Internacional</h4>
+                        <p>Pratos elaborados por chefs experientes</p>
+                    </div>
+                    
+                    <div class="destaque-item">
+                        <i class="icon">🌊</i>
+                        <h4>Vista para o Mar</h4>
+                        <p>Ambiente privilegiado com vista panorâmica</p>
+                    </div>
+                    
+                    <div class="destaque-item">
+                        <i class="icon">🍷</i>
+                        <h4>Vinhos Selecionados</h4>
+                        <p>Extensa carta de vinhos nacionais e internacionais</p>
+                    </div>
+                </div>
+                
+                <div class="horario">
+                    <h4>Horário de Funcionamento:</h4>
+                    <p>8:00 - 23:00</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    /* Estilos da seção do restaurante */
+    .restaurante-section {
+        padding: 60px 0;
+        background-color: #fff;
+    }
+    
+    .restaurante-content {
+        display: flex;
+        gap: 40px;
+        align-items: center;
+    }
+    
+    .restaurante-img {
+        flex: 1;
+        position: relative;
+    }
+    
+    .restaurante-img img {
+        width: 100%;
+        border-radius: 8px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    
+    .restaurante-info {
+        flex: 1;
+    }
+    
+    .restaurante-info h3 {
+        font-size: 24px;
+        color: #2a3a4b;
+        margin-bottom: 20px;
+    }
+    
+    .restaurante-info p {
+        color: #666;
+        line-height: 1.6;
+        margin-bottom: 30px;
+    }
+    
+    .destaques {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+        margin-bottom: 30px;
+    }
+    
+    .destaque-item {
+        text-align: center;
+        padding: 20px;
+        background: #f9f9f9;
+        border-radius: 8px;
+    }
+    
+    .destaque-item .icon {
+        font-size: 30px;
+        margin-bottom: 10px;
+    }
+    
+    .destaque-item h4 {
+        color: #4CAF50;
+        margin-bottom: 8px;
+    }
+    
+    .destaque-item p {
+        font-size: 14px;
+        margin-bottom: 0;
+    }
+    
+    .horario {
+        background: #f5f5f5;
+        padding: 20px;
+        border-radius: 8px;
+    }
+    
+    .horario h4 {
+        color: #2a3a4b;
+        margin-bottom: 10px;
+    }
+    
+    .horario p {
+        margin-bottom: 5px;
+    }
+    
+    /* Estilos do slideshow */
+    .slideshow-container {
+        position: relative;
+        max-width: 100%;
+    }
+    
+    .mySlides {
+        display: none;
+    }
+    
+    .mySlides img {
+        width: 100%;
+        border-radius: 8px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    
+    /* Botões de navegação */
+    .prev, .next {
+        cursor: pointer;
+        position: absolute;
+        top: 50%;
+        width: auto;
+        padding: 16px;
+        margin-top: -22px;
+        color: white;
+        font-weight: bold;
+        font-size: 18px;
+        transition: 0.6s ease;
+        border-radius: 0 3px 3px 0;
+        user-select: none;
+        background-color: rgba(0,0,0,0.5);
+    }
+    
+    .next {
+        right: 0;
+        border-radius: 3px 0 0 3px;
+    }
+    
+    .prev:hover, .next:hover {
+        background-color: rgba(0,0,0,0.8);
+    }
+    
+    /* Indicadores */
+    .dots-container {
+        text-align: center;
+        padding: 10px 0;
+    }
+    
+    .dot {
+        cursor: pointer;
+        height: 10px;
+        width: 10px;
+        margin: 0 2px;
+        background-color: #bbb;
+        border-radius: 50%;
+        display: inline-block;
+        transition: background-color 0.6s ease;
+    }
+    
+    .active, .dot:hover {
+        background-color: #4CAF50;
+    }
+    
+    /* Animação de transição */
+    .fade {
+        animation-name: fade;
+        animation-duration: 1.5s;
+    }
+    
+    @keyframes fade {
+        from {opacity: .4}
+        to {opacity: 1}
+    }
+    
+    @media (max-width: 768px) {
+        .restaurante-content {
+            flex-direction: column;
+        }
+    }
+</style>
+
+<script>
+    let slideIndex = 1;
+    showSlides(slideIndex);
+    
+    // Função para avançar/retroceder slides
+    function plusSlides(n) {
+        showSlides(slideIndex += n);
+    }
+    
+    // Função para ir para um slide específico
+    function currentSlide(n) {
+        showSlides(slideIndex = n);
+    }
+    
+    // Função principal que controla o slideshow
+    function showSlides(n) {
+        let i;
+        let slides = document.getElementsByClassName("mySlides");
+        let dots = document.getElementsByClassName("dot");
+        
+        if (n > slides.length) {slideIndex = 1}
+        if (n < 1) {slideIndex = slides.length}
+        
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        
+        for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+        }
+        
+        slides[slideIndex-1].style.display = "block";
+        dots[slideIndex-1].className += " active";
+    }
+    
+    // Opcional: Auto avançar slides
+    setInterval(() => {
+        plusSlides(1);
+    }, 5000);
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+     <!-- 
+=====================================================================
+TRANSPORT BOOKING WIDGET - BUZIO RELAX ISLAND TRANSPORTATION SERVICE
+=====================================================================
+
+Este componente fornece um sistema de reserva de transporte para a ilha,
+permitindo aos usuários selecionar origem/destino e ver preços estimados.
+
+Estrutura principal:
+1. HTML - Estrutura do widget
+2. CSS - Estilização responsiva
+3. JavaScript - Lógica de interação e cálculo de preços
+
+Tecnologias utilizadas:
+- HTML5 semântico
+- CSS3 com Flexbox
+- JavaScript vanilla
+- Font Awesome para ícones
+- Design responsivo (mobile-first)
+
+Observações:
+- Os preços são simulados (sem integração real com API de transporte)
+- As distâncias são valores fictícios (deverão ser substituídos por reais)
+- O widget segue o padrão de cores do Buzio Relax
+-->
+
+<!-- 
+===================
+SEÇÃO HTML (MARKUP)
+===================
+Estrutura principal do widget de reserva de transporte
+-->
+<div class="transport_booking" id="transporte-local">
+   <div class="container">
+      <div class="row">
+         <div class="col-md-12">
+            <!-- Container principal do widget -->
+            <div class="transport_box">
+               <!-- Cabeçalho com título e descrição -->
+               <h2>Seu transporte na ilha → Agora no Buzio Relax</h2>
+               <p>Viagens confortáveis entre os principais pontos da ilha</p>
+               
+               <!-- Formulário de reserva -->
+               <div class="transport_form">
+                  <!-- Campo de seleção: Ponto de partida -->
+                  <div class="transport_step active">
+                     <div class="transport_icon"><i class="fa fa-map-marker"></i></div>
+                     <select class="transport_select" id="origin">
+                        <option value="">Selecione o ponto de partida</option>
+                        <option value="Buzio Relax" selected>Buzio Relax</option>
+                        <option value="Tarrafal">Tarrafal</option>
+                        <option value="Assomada">Assomada</option>
+                        <option value="Praia">Praia</option>
+                        <option value="Santiago">Santiago</option>
+                        <option value="Calheta">Calheta</option>
+                     </select>
+                  </div>
+                  
+                  <!-- Campo de seleção: Destino -->
+                  <div class="transport_step">
+                     <div class="transport_icon"><i class="fa fa-flag-checkered"></i></div>
+                     <select class="transport_select" id="destination">
+                        <option value="">Selecione o destino</option>
+                        <option value="Tarrafal">Tarrafal</option>
+                        <option value="Assomada">Assomada</option>
+                        <option value="Praia">Praia</option>
+                        <option value="Santiago">Santiago</option>
+                        <option value="Calheta">Calheta</option>
+                        <option value="Buzio Relax">Buzio Relax</option>
+                     </select>
+                  </div>
+                  
+                  <!-- Caixa de simulação de preço (dinâmica) -->
+                  <div class="price_simulator">
+                     <div class="price_display">
+                        <span>Preço estimado:</span>
+                        <strong id="estimated_price">--$00</strong>
+                     </div>
+                     <div class="price_details">
+                        <div><i class="fa fa-road"></i> <span id="distance">-- km</span></div>
+                        <div><i class="fa fa-clock"></i> <span id="duration">-- min</span></div>
+                     </div>
+                  </div>
+                  
+                  <!-- Botão de confirmação de reserva (estado inicial: desativado) -->
+                  <button class="transport_btn" id="confirm_ride" disabled>
+                     <i class="fa fa-taxi"></i> Reservar Agora
+                  </button>
+               </div>
+               
+               <!-- Rodapé com informações adicionais -->
+               <div class="transport_features">
+                  <div class="feature_item">
+                     <i class="fa fa-clock"></i>
+                     <span>Disponível 24h</span>
+                  </div>
+                  <div class="feature_item">
+                     <i class="fa fa-phone"></i>
+                     <span>Suporte: +238 917 40 19</span>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+
+<!-- 
+==================
+SEÇÃO CSS (ESTILOS)
+==================
+Estilização responsiva do widget usando padrões modernos de CSS
+-->
+<style>
+/* 
+--------------------------------------------------------------
+ESTILOS GERAIS DO COMPONENTE DE TRANSPORTE
+--------------------------------------------------------------
+*/
+
+/* Container principal - fundo escuro */
+.transport_booking {
+   background: #1a1a2e; /* Cor de fundo escura */
+   padding: 60px 0; /* Espaçamento vertical */
+   color: white; /* Cor do texto principal */
+}
+
+/* Caixa do widget - contraste com o fundo */
+.transport_box {
+   background: #16213e; /* Azul mais escuro */
+   border-radius: 12px; /* Bordas arredondadas */
+   padding: 30px; /* Espaçamento interno */
+   box-shadow: 0 5px 15px rgba(0,0,0,0.2); /* Sombra sutil */
+}
+
+/* Tipografia - Títulos e parágrafos */
+.transport_box h2 {
+   font-size: 28px; /* Tamanho adequado para destaque */
+   color: white; /* Cor do texto */
+   margin-bottom: 10px; /* Espaçamento inferior */
+}
+
+.transport_box p {
+   color: #a8a8c1; /* Cor secundária para texto menos importante */
+   margin-bottom: 30px; /* Espaçamento inferior */
+   font-size: 16px; /* Tamanho legível */
+}
+
+/* 
+--------------------------------------------------------------
+ESTILOS DO FORMULÁRIO DE RESERVA
+--------------------------------------------------------------
+*/
+
+/* Container flexível para os elementos do formulário */
+.transport_form {
+   display: flex;
+   flex-direction: column; /* Disposição vertical */
+   gap: 15px; /* Espaçamento entre elementos */
+   margin-bottom: 30px; /* Espaçamento inferior */
+}
+
+/* Estilo dos campos de seleção (steps) */
+.transport_step {
+   display: flex;
+   align-items: center; /* Alinhamento vertical */
+   background: #0f3460; /* Cor de fundo do campo */
+   border-radius: 8px; /* Bordas arredondadas */
+   padding: 12px 15px; /* Espaçamento interno */
+   transition: all 0.3s; /* Transição suave para hover/focus */
+}
+
+/* Estado ativo (com borda esquerda verde) */
+.transport_step.active {
+   border-left: 4px solid #25D366; /* Destaque visual */
+}
+
+/* Ícones dos campos */
+.transport_icon {
+   color: #25D366; /* Cor verde para os ícones */
+   margin-right: 15px; /* Espaçamento à direita */
+   font-size: 18px; /* Tamanho adequado */
+}
+
+/* Campos de seleção personalizados */
+.transport_select {
+   flex: 1; /* Ocupa todo espaço disponível */
+   border: none; /* Remove borda padrão */
+   background: transparent; /* Fundo transparente */
+   padding: 8px; /* Espaçamento interno */
+   font-size: 16px; /* Tamanho legível */
+   color: white; /* Cor do texto */
+   appearance: none; /* Remove estilo nativo do select */
+}
+
+/* Opções do dropdown */
+.transport_select option {
+   background: #0f3460; /* Cor de fundo */
+   color: white; /* Cor do texto */
+}
+
+/* 
+--------------------------------------------------------------
+ESTILOS DA CAIXA DE SIMULAÇÃO DE PREÇO
+--------------------------------------------------------------
+*/
+
+/* Container da simulação de preço */
+.price_simulator {
+   background: #0f3460; /* Cor de fundo consistente */
+   border-radius: 8px; /* Bordas arredondadas */
+   padding: 15px; /* Espaçamento interno */
+   margin: 10px 0; /* Margem vertical */
+}
+
+/* Linha de exibição do preço */
+.price_display {
+   display: flex;
+   justify-content: space-between; /* Espaço entre texto e valor */
+   align-items: center; /* Alinhamento vertical */
+   margin-bottom: 10px; /* Espaçamento inferior */
+   font-size: 18px; /* Tamanho legível */
+}
+
+/* Valor do preço (destaque) */
+.price_display strong {
+   color: #25D366; /* Cor verde para destaque */
+   font-size: 22px; /* Tamanho maior que o texto normal */
+}
+
+/* Detalhes adicionais (distância e tempo) */
+.price_details {
+   display: flex;
+   justify-content: space-between; /* Itens distribuídos */
+   font-size: 14px; /* Tamanho menor que o principal */
+   color: #a8a8c1; /* Cor secundária */
+}
+
+/* Ícones dos detalhes */
+.price_details i {
+   margin-right: 5px; /* Espaçamento à direita */
+   color: #25D366; /* Cor verde para consistência */
+}
+
+/* 
+--------------------------------------------------------------
+ESTILOS DO BOTÃO DE RESERVA
+--------------------------------------------------------------
+*/
+
+.transport_btn {
+   background: #25D366; /* Cor verde vibrante */
+   color: white; /* Texto branco para contraste */
+   border: none; /* Remove borda padrão */
+   padding: 15px; /* Espaçamento interno confortável */
+   border-radius: 8px; /* Bordas arredondadas */
+   font-weight: bold; /* Texto em negrito */
+   cursor: pointer; /* Indica ação clicável */
+   transition: all 0.3s; /* Transição suave */
+   font-size: 16px; /* Tamanho legível */
+   display: flex;
+   align-items: center; /* Alinhamento vertical do ícone e texto */
+   justify-content: center; /* Centralização horizontal */
+   gap: 10px; /* Espaço entre ícone e texto */
+}
+
+/* Efeito hover do botão */
+.transport_btn:hover {
+   background: #128C7E; /* Tom mais escuro de verde */
+   transform: translateY(-2px); /* Efeito de levitação sutil */
+}
+
+/* Estado desativado do botão */
+.transport_btn:disabled {
+   background: #cccccc; /* Cor cinza */
+   cursor: not-allowed; /* Cursor indicando não clicável */
+}
+
+/* 
+--------------------------------------------------------------
+ESTILOS DO RODAPÉ (INFORMAÇÕES ADICIONAIS)
+--------------------------------------------------------------
+*/
+
+.transport_features {
+   display: flex;
+   justify-content: center; /* Centralização horizontal */
+   gap: 25px; /* Espaço entre itens */
+   flex-wrap: wrap; /* Quebra de linha em telas pequenas */
+   border-top: 1px solid #0f3460; /* Linha divisória */
+   padding-top: 20px; /* Espaçamento superior */
+}
+
+/* Itens individuais do rodapé */
+.feature_item {
+   display: flex;
+   align-items: center; /* Alinhamento vertical */
+   color: #25D366; /* Cor verde para consistência */
+   font-weight: 500; /* Peso médio para destaque */
+   gap: 8px; /* Espaço entre ícone e texto */
+}
+
+/* 
+--------------------------------------------------------------
+ESTILOS RESPONSIVOS (MOBILE-FIRST)
+--------------------------------------------------------------
+*/
+
+@media (max-width: 768px) {
+   /* Ajustes para telas menores que 768px */
+   
+   /* Rodapé em coluna */
+   .transport_features {
+      flex-direction: column;
+      gap: 15px;
+   }
+   
+   /* Detalhes do preço em coluna */
+   .price_details {
+      flex-direction: column;
+      gap: 8px;
+   }
+}
+</style>
+
+<!-- 
+=======================
+SEÇÃO JAVASCRIPT (LÓGICA)
+=======================
+Funcionalidades interativas do widget
+-->
+<script>
+// 
+// DADOS GEOGRÁFICOS E DE PREÇOS
+//
+
+/* Objeto com coordenadas geográficas dos locais
+   (valores fictícios - devem ser substituídos por reais) */
+const locations = {
+   "Buzio Relax": { lat: 15.1795, lng: -23.6976 },
+   "Tarrafal": { lat: 15.2733, lng: -23.7617 },
+   "Assomada": { lat: 15.0969, lng: -23.6828 },
+   "Praia": { lat: 14.9333, lng: -23.6167 },
+   "Santiago": { lat: 15.0969, lng: -23.6167 }, // Ponto central da ilha
+   "Calheta": { lat: 15.1833, lng: -23.5833 }
+};
+
+/* Preços base por tipo de veículo 
+   (valores em Escudos cabo-verdianos - CVE) */
+const basePrices = {
+   standard: 1500,  // Veículo padrão (até 4 passageiros)
+   family: 2000,    // Veículo familiar (até 8 passageiros)
+   premium: 2500    // Veículo premium (conforto superior)
+};
+
+// Variável para armazenar o tipo de veículo selecionado
+let selectedVehicle = "standard";
+
+// 
+// FUNÇÕES PRINCIPAIS
+//
+
+/**
+ * Calcula a rota e atualiza as informações na interface
+ * Baseado na seleção de origem e destino
+ */
+function calculateRoute() {
+   // Obtém valores selecionados nos dropdowns
+   const origin = document.getElementById("origin").value;
+   const destination = document.getElementById("destination").value;
+   
+   // Validação básica - campos vazos ou iguais
+   if (!origin || !destination || origin === destination) {
+      // Reseta os valores exibidos
+      document.getElementById("estimated_price").textContent = "--$00";
+      document.getElementById("distance").textContent = "-- km";
+      document.getElementById("duration").textContent = "-- min";
+      
+      // Desativa o botão de reserva
+      document.getElementById("confirm_ride").disabled = true;
+      return;
+   }
+   
+   // Simulação de cálculo de distância (substituir por API real)
+   const distanceKm = getRandomDistance(origin, destination);
+   
+   // Cálculo fictício de tempo (1.5 minutos por km)
+   const durationMin = Math.round(distanceKm * 1.5);
+   
+   // Atualiza a interface com os valores calculados
+   document.getElementById("distance").textContent = distanceKm.toFixed(1) + " km";
+   document.getElementById("duration").textContent = durationMin + " min";
+   
+   // Calcula e exibe o preço estimado
+   const price = calculatePrice(distanceKm);
+   document.getElementById("estimated_price").textContent = price.toLocaleString('pt-CV') + "$00";
+   
+   // Ativa o botão de reserva
+   document.getElementById("confirm_ride").disabled = false;
+}
+
+/**
+ * Função auxiliar para simular distâncias entre locais
+ * (Deve ser substituída por valores reais ou integração com API de mapas)
+ */
+function getRandomDistance(origin, destination) {
+   // Distâncias fictícias pré-definidas entre locais (em km)
+   const distances = {
+      "Buzio Relax": {
+         "Tarrafal": 15.5,
+         "Assomada": 25.3,
+         "Praia": 42.7,
+         "Santiago": 35.2,
+         "Calheta": 18.9
+      },
+      // Adicionar outras origens conforme necessário
+   };
+   
+   // Retorna a distância pré-definida ou um valor aleatório como fallback
+   return distances[origin]?.[destination] || Math.random() * 50 + 5;
+}
+
+/**
+ * Calcula o preço com base na distância e tipo de veículo
+ * @param {number} distanceKm - Distância em quilômetros
+ * @returns {number} Preço calculado em CVE
+ */
+function calculatePrice(distanceKm) {
+   // Obtém o preço base conforme o veículo selecionado
+   const basePrice = basePrices[selectedVehicle];
+   
+   // Fórmula simples de cálculo:
+   // Preço base + (distância × taxa por km)
+   // (100 CVE por km neste exemplo)
+   const price = basePrice + (distanceKm * 100);
+   
+   // Arredonda para valor inteiro
+   return Math.round(price);
+}
+
+// 
+// EVENT LISTENERS E INICIALIZAÇÃO
+//
+
+// Listeners para mudanças nos campos de seleção
+document.getElementById("origin").addEventListener("change", calculateRoute);
+document.getElementById("destination").addEventListener("change", calculateRoute);
+
+// Listener para o botão de confirmação de reserva
+document.getElementById('confirm_ride').addEventListener('click', function() {
+   // Obtém os valores selecionados
+   const origin = document.getElementById("origin").value;
+   const destination = document.getElementById("destination").value;
+   const price = document.getElementById("estimated_price").textContent;
+   
+   // Feedback visual - loading
+   this.innerHTML = '<i class="fa fa-spinner fa-spin"></i> Processando...';
+   
+   // Simulação de processamento da reserva (substituir por chamada real à API)
+   setTimeout(() => {
+      // Exibe alerta com os detalhes (substituir por modal personalizado)
+      alert(`Reserva confirmada!\n\nDe: ${origin}\nPara: ${destination}\nPreço: ${price}\n\nO motorista chegará em 10-15 minutos.`);
+      
+      // Feedback visual - confirmação
+      this.innerHTML = '<i class="fa fa-check"></i> Reserva Confirmada';
+      
+      // Reset do botão após 5 segundos
+      setTimeout(() => {
+         this.innerHTML = '<i class="fa fa-taxi"></i> Reservar Agora';
+      }, 5000);
+   }, 2000);
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--  footer -->
+      <footer>
+         <div class="footer">
+            <div class="container">
+               <div class="row">
+                  <div class=" col-md-4">
+                     <h3>Contact US</h3>
+                     <ul class="conta">
+                        <li><i class="fa fa-map-marker" aria-hidden="true"></i> Address</li>
+                        <li><i class="fa fa-mobile" aria-hidden="true"></i>+238 917 40 19</li>
+                        <li> <i class="fa fa-envelope" aria-hidden="true"></i><a href="#">restaurantebuzio20@gmail.com</a></li>
+                     </ul>
+                  </div>
+                  <div class="col-md-4">
+                     <h3>Novidades de Pacotes e Promoçoes</h3>
+                     <form class="bottom_form">
+                        <input class="enter" placeholder="Seu email?" type="text" name="Enter your email">
+                        <button class="sub_btn">Subscreva</button>
+                     </form>
+                     <ul class="social_icon">
+    <li><a href="#"><i class="fab fa-facebook-f" aria-hidden="true"></i></a></li>
+    <li><a href="#"><i class="fab fa-twitter" aria-hidden="true"></i></a></li>
+    <li><a href="#"><i class="fab fa-instagram" aria-hidden="true"></i></a></li>
+    <li><a href="#"><i class="fab fa-youtube" aria-hidden="true"></i></a></li>
+</ul>
+                  </div>
+               </div>
+            </div>  
+            <div class="copyright">
+               <div class="container">
+                  <div class="row">
+                     <div class="col-md-10 offset-md-1">
+                        <p>© 2025 Todos os direitos reservados. Programado por <a href="https://html.design/"> Leonardo Nardy</a></p>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </footer>
+
+
+<style>
+    /* Ícones Sociais - Versão Real */
+.footer .social_icon {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    margin-top: 25px;
+    justify-content: center;
+    gap: 15px;
+}
+
+.footer .social_icon li {
+    margin: 0;
+}
+
+.footer .social_icon a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    color: #ffffff;
+    transition: all 0.3s ease-out;
+    font-size: 18px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Efeito de onda ao clicar */
+.footer .social_icon a:active::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(255,255,255,0.3);
+    border-radius: 50%;
+    animation: ripple 0.6s linear;
+}
+
+@keyframes ripple {
+    0% { transform: scale(0); opacity: 1; }
+    100% { transform: scale(2); opacity: 0; }
+}
+
+/* Cores específicas para cada rede social */
+.footer .social_icon li:nth-child(1) a { /* Facebook */
+    background: #3b5998;
+}
+
+.footer .social_icon li:nth-child(2) a { /* Twitter */
+    background: #1DA1F2;
+}
+
+.footer .social_icon li:nth-child(3) a { /* Instagram */
+    background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+}
+
+.footer .social_icon li:nth-child(4) a { /* YouTube */
+    background: #FF0000;
+}
+
+.footer .social_icon a:hover {
+    transform: translateY(-5px) rotate(5deg) scale(1.1);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+/* Ícones com efeito de flutuação alternada */
+.footer .social_icon li:nth-child(odd) a:hover {
+    transform: translateY(-5px) rotate(-5deg) scale(1.1);
+}
+/* Estilos Gerais do Footer */
+footer {
+    background: linear-gradient(135deg, #1a2a3a 0%, #2a3a4a 100%);
+    color: #ffffff;
+    padding-top: 50px;
+    position: relative;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+}
+
+.footer {
+    width: 100%;
+}
+
+.footer h3 {
+    color: #ffffff;
+    font-size: 20px;
+    margin-bottom: 25px;
+    font-weight: 600;
+    position: relative;
+    text-transform: uppercase;
+    display: inline-block;
+}
+
+.footer h3::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -10px;
+    width: 50px;
+    height: 2px;
+    background: #4CAF50;
+}
+
+/* Seções do Footer */
+.footer .row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.footer .col-md-4 {
+    padding: 0 30px;
+    margin-bottom: 40px;
+    max-width: 350px;
+}
+
+/* Seção de Contato */
+.footer .conta {
+    list-style: none;
+    padding: 0;
+    display: inline-block;
+    text-align: left;
+}
+
+.footer .conta li {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.footer .conta li:hover {
+    transform: translateX(5px);
+}
+
+.footer .conta i {
+    margin-right: 15px;
+    color: #4CAF50;
+    font-size: 18px;
+    width: 20px;
+    text-align: center;
+}
+
+.footer .conta a {
+    color: #ffffff;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer .conta a:hover {
+    color: #4CAF50;
+}
+
+/* Links do Menu */
+.footer .link_menu {
+    list-style: none;
+    padding: 0;
+    display: inline-block;
+    text-align: left;
+}
+
+.footer .link_menu li {
+    margin-bottom: 12px;
+    position: relative;
+    padding-left: 20px;
+}
+
+.footer .link_menu li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: #4CAF50;
+    font-weight: bold;
+}
+
+.footer .link_menu a {
+    color: #ffffff;
+    text-decoration: none;
+    transition: all 0.3s;
+    display: inline-block;
+}
+
+.footer .link_menu a:hover {
+    color: #4CAF50;
+    transform: translateX(5px);
+}
+
+.footer .link_menu .active a {
+    color: #4CAF50;
+    font-weight: 600;
+}
+
+/* Formulário de Newsletter */
+.footer .bottom_form {
+    display: flex;
+    margin-bottom: 25px;
+    justify-content: center;
+}
+
+.footer .enter {
+    border: none;
+    padding: 12px 15px;
+    width: 70%;
+    max-width: 250px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    border-radius: 4px 0 0 4px;
+    outline: none;
+    transition: all 0.3s;
+}
+
+.footer .enter::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.footer .enter:focus {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.footer .sub_btn {
+    width: 30%;
+    max-width: 100px;
+    border: none;
+    background: #4CAF50;
+    color: white;
+    padding: 12px;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+.footer .sub_btn:hover {
+    background: #3e8e41;
+}
+
+/* Ícones Sociais - Estilização real */
+.footer .social_icon {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    margin-top: 20px;
+    justify-content: center;
+}
+
+.footer .social_icon li {
+    margin: 0 8px;
+}
+
+.footer .social_icon a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    color: #ffffff;
+    transition: all 0.3s;
+    font-size: 18px;
+}
+
+/* Cores específicas para cada rede social */
+.footer .social_icon a:hover {
+    transform: translateY(-3px) scale(1.1);
+}
+
+.footer .social_icon li:nth-child(1) a:hover {
+    background: #3b5998; /* Facebook */
+}
+
+.footer .social_icon li:nth-child(2) a:hover {
+    background: #1DA1F2; /* Twitter */
+}
+
+.footer .social_icon li:nth-child(3) a:hover {
+    background: #0077B5; /* LinkedIn */
+}
+
+.footer .social_icon li:nth-child(4) a:hover {
+    background: #FF0000; /* YouTube */
+}
+
+/* Copyright */
+.footer .copyright {
+    background: rgba(0, 0, 0, 0.2);
+    padding: 20px 0;
+    margin-top: 30px;
+}
+
+.footer .copyright p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 14px;
+}
+
+.footer .copyright a {
+    color: #4CAF50;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.footer .copyright a:hover {
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+/* Responsividade */
+@media (max-width: 992px) {
+    .footer .col-md-4 {
+        width: 50%;
+    }
+}
+
+@media (max-width: 768px) {
+    .footer .col-md-4 {
+        width: 100%;
+        max-width: 100%;
+        padding: 0 15px;
+    }
+    
+    .footer .conta,
+    .footer .link_menu {
+        text-align: center;
+    }
+    
+    .footer .conta li,
+    .footer .link_menu li {
+        justify-content: center;
+    }
+    
+    .footer .link_menu li::before {
+        display: none;
+    }
+    
+    .footer .bottom_form {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .footer .enter,
+    .footer .sub_btn {
+        width: 100%;
+        max-width: 300px;
+        border-radius: 4px;
+    }
+    
+    .footer .sub_btn {
+        margin-top: 10px;
+    }
+}
+</style>
+<script>
+// Adiciona classe ativa ao clicar nos ícones
+document.querySelectorAll('.social_icon a').forEach(icon => {
+    icon.addEventListener('click', function(e) {
+        e.preventDefault();
+        this.classList.add('active');
+        setTimeout(() => {
+            this.classList.remove('active');
+        }, 300);
+        
+        // Aqui você pode adicionar o redirecionamento real
+        // window.location.href = this.getAttribute('href');
+    });
+});
+</script>
+
+      <!-- end footer -->
+      <!-- Javascript files-->
+      <script src="jquery.min.js"></script>
+      <script src="bootstrap.bundle.min.js"></script>
+      <script src="jquery-3.0.0.min.js"></script>
+      <!-- sidebar -->
+      <script src="jquery.mCustomScrollbar.concat.min.js"></script>
+      <script src="custom.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </body>
+    </html>
