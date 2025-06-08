@@ -41,15 +41,6 @@
             
             
             
-            
-            
-            
-            
-            
-            
-            
-            
-            
             /* Responsividade */
             @media (max-width: 768px) {
                 .header-content {
@@ -80,10 +71,10 @@
         <div class="dropdown-content">
             <a href="#">Home</a>
             <a href="#">Sobre Nós</a>
-            <a href="#">Nossos Quartos</a>
-            <a href="#">Restaurante</a>
-            <a href="#">Transporte</a>
-            <a href="#">Contato</a>
+            <a href="#Nossos Quartos">Nossos Quartos</a>
+            <a href="#Restaurante">Restaurante</a>
+            <a href="#transporte-local">Transporte</a>
+            <a href="#Contato">Contato</a>
         </div>
     </div>
 </header>
@@ -539,7 +530,7 @@
         const mensagemCodificada = encodeURIComponent(mensagem);
         
         // Número de WhatsApp (substitua X pelo número completo)
-        const numeroWhatsApp = '+2389340975';
+        const numeroWhatsApp = '+2389174019';
         
         // Abrir WhatsApp com a mensagem
         window.open(`https://wa.me/${numeroWhatsApp}?text=${mensagemCodificada}`, '_blank');
@@ -574,7 +565,7 @@
 
 
 
-<section class="quartos-section">
+<section id="Nossos Quartos" class="quartos-section">
     <div class="container">
         <h2 class="section-title">Nossos Quartos</h2>
         
@@ -708,7 +699,7 @@
 
 
 
-<section class="restaurante-section">
+<section id="Restaurante" class="restaurante-section">
     <div class="container">
         <h2 class="section-title">Nosso Restaurante</h2>
         
@@ -1361,27 +1352,57 @@ Funcionalidades interativas do widget
 // DADOS GEOGRÁFICOS E DE PREÇOS
 //
 
-/* Objeto com coordenadas geográficas dos locais
-   (valores fictícios - devem ser substituídos por reais) */
-const locations = {
-   "Buzio Relax": { lat: 15.1795, lng: -23.6976 },
-   "Tarrafal": { lat: 15.2733, lng: -23.7617 },
-   "Assomada": { lat: 15.0969, lng: -23.6828 },
-   "Praia": { lat: 14.9333, lng: -23.6167 },
-   "Santiago": { lat: 15.0969, lng: -23.6167 }, // Ponto central da ilha
-   "Calheta": { lat: 15.1833, lng: -23.5833 }
+/* Tabela de preços fixos conforme solicitado */
+const fixedPrices = {
+    "Buzio Relax": {
+        "Tarrafal": 1000,
+        "Assomada": 2500,
+        "Calheta": 2600,
+        "Santiago": 3600,
+        "Praia": 6500
+    },
+    "Tarrafal": {
+        "Buzio Relax": 1000
+    },
+    "Assomada": {
+        "Buzio Relax": 2500
+    },
+    "Calheta": {
+        "Buzio Relax": 2600
+    },
+    "Santiago": {
+        "Buzio Relax": 3600
+    },
+    "Praia": {
+        "Buzio Relax": 6500
+    }
 };
 
-/* Preços base por tipo de veículo 
-   (valores em Escudos cabo-verdianos - CVE) */
-const basePrices = {
-   standard: 1500,  // Veículo padrão (até 4 passageiros)
-   family: 2000,    // Veículo familiar (até 8 passageiros)
-   premium: 2500    // Veículo premium (conforto superior)
+/* Distâncias aproximadas para exibição (em km) */
+const distanceMap = {
+    "Buzio Relax": {
+        "Tarrafal": 15.5,
+        "Assomada": 25.3,
+        "Calheta": 18.9,
+        "Santiago": 35.2,
+        "Praia": 42.7
+    },
+    "Tarrafal": {
+        "Buzio Relax": 15.5
+    },
+    "Assomada": {
+        "Buzio Relax": 25.3
+    },
+    "Calheta": {
+        "Buzio Relax": 18.9
+    },
+    "Santiago": {
+        "Buzio Relax": 35.2
+    },
+    "Praia": {
+        "Buzio Relax": 42.7
+    }
 };
-
-// Variável para armazenar o tipo de veículo selecionado
-let selectedVehicle = "standard";
 
 // 
 // FUNÇÕES PRINCIPAIS
@@ -1389,14 +1410,14 @@ let selectedVehicle = "standard";
 
 /**
  * Calcula a rota e atualiza as informações na interface
- * Baseado na seleção de origem e destino
+ * usando os preços fixos definidos
  */
 function calculateRoute() {
    // Obtém valores selecionados nos dropdowns
    const origin = document.getElementById("origin").value;
    const destination = document.getElementById("destination").value;
    
-   // Validação básica - campos vazos ou iguais
+   // Validação básica - campos vazios ou iguais
    if (!origin || !destination || origin === destination) {
       // Reseta os valores exibidos
       document.getElementById("estimated_price").textContent = "--$00";
@@ -1408,61 +1429,29 @@ function calculateRoute() {
       return;
    }
    
-   // Simulação de cálculo de distância (substituir por API real)
-   const distanceKm = getRandomDistance(origin, destination);
+   // Obtém o preço fixo da tabela
+   const price = fixedPrices[origin]?.[destination] || fixedPrices[destination]?.[origin] || 0;
+   
+   // Obtém a distância para exibição
+   const distanceKm = distanceMap[origin]?.[destination] || distanceMap[destination]?.[origin] || 0;
    
    // Cálculo fictício de tempo (1.5 minutos por km)
    const durationMin = Math.round(distanceKm * 1.5);
    
    // Atualiza a interface com os valores calculados
-   document.getElementById("distance").textContent = distanceKm.toFixed(1) + " km";
-   document.getElementById("duration").textContent = durationMin + " min";
+   document.getElementById("distance").textContent = distanceKm > 0 ? distanceKm.toFixed(1) + " km" : "-- km";
+   document.getElementById("duration").textContent = durationMin > 0 ? durationMin + " min" : "-- min";
    
-   // Calcula e exibe o preço estimado
-   const price = calculatePrice(distanceKm);
-   document.getElementById("estimated_price").textContent = price.toLocaleString('pt-CV') + "$00";
+   // Formata o preço no formato 1.000$00
+   if (price > 0) {
+      const formattedPrice = (price / 1).toLocaleString('pt') + "$00";
+      document.getElementById("estimated_price").textContent = formattedPrice;
+   } else {
+      document.getElementById("estimated_price").textContent = "--$00";
+   }
    
-   // Ativa o botão de reserva
-   document.getElementById("confirm_ride").disabled = false;
-}
-
-/**
- * Função auxiliar para simular distâncias entre locais
- * (Deve ser substituída por valores reais ou integração com API de mapas)
- */
-function getRandomDistance(origin, destination) {
-   // Distâncias fictícias pré-definidas entre locais (em km)
-   const distances = {
-      "Buzio Relax": {
-         "Tarrafal": 15.5,
-         "Assomada": 25.3,
-         "Praia": 42.7,
-         "Santiago": 35.2,
-         "Calheta": 18.9
-      },
-      // Adicionar outras origens conforme necessário
-   };
-   
-   // Retorna a distância pré-definida ou um valor aleatório como fallback
-   return distances[origin]?.[destination] || Math.random() * 50 + 5;
-}
-
-/**
- * Calcula o preço com base na distância e tipo de veículo
- * @param {number} distanceKm - Distância em quilômetros
- * @returns {number} Preço calculado em CVE
- */
-function calculatePrice(distanceKm) {
-   // Obtém o preço base conforme o veículo selecionado
-   const basePrice = basePrices[selectedVehicle];
-   
-   // Fórmula simples de cálculo:
-   // Preço base + (distância × taxa por km)
-   // (100 CVE por km neste exemplo)
-   const price = basePrice + (distanceKm * 100);
-   
-   // Arredonda para valor inteiro
-   return Math.round(price);
+   // Ativa o botão de reserva se o preço for válido
+   document.getElementById("confirm_ride").disabled = price <= 0;
 }
 
 // 
@@ -1482,10 +1471,11 @@ document.getElementById('confirm_ride').addEventListener('click', function() {
    
    // Feedback visual - loading
    this.innerHTML = '<i class="fa fa-spinner fa-spin"></i> Processando...';
+   this.disabled = true;
    
-   // Simulação de processamento da reserva (substituir por chamada real à API)
+   // Simulação de processamento da reserva
    setTimeout(() => {
-      // Exibe alerta com os detalhes (substituir por modal personalizado)
+      // Exibe alerta com os detalhes
       alert(`Reserva confirmada!\n\nDe: ${origin}\nPara: ${destination}\nPreço: ${price}\n\nO motorista chegará em 10-15 minutos.`);
       
       // Feedback visual - confirmação
@@ -1494,10 +1484,228 @@ document.getElementById('confirm_ride').addEventListener('click', function() {
       // Reset do botão após 5 segundos
       setTimeout(() => {
          this.innerHTML = '<i class="fa fa-taxi"></i> Reservar Agora';
+         this.disabled = false;
       }, 5000);
    }, 2000);
 });
+
+// Inicializa o cálculo da rota quando a página carrega
+document.addEventListener('DOMContentLoaded', function() {
+   calculateRoute();
+});
 </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="transport_booking" id="transporte-local">
+   <!-- ... (mantenha todo o HTML existente até o final do transport_box) ... -->
+</div>
+
+<!-- Modal de Reserva (novo elemento) -->
+<div id="reservationModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h3>Complete sua reserva</h3>
+    <form id="reservationForm">
+      <div class="form-group">
+        <label for="clientName">Nome Completo:</label>
+        <input type="text" id="clientName" required>
+      </div>
+      <div class="form-group">
+        <label for="clientPhone">Número de Telefone:</label>
+        <input type="tel" id="clientPhone" required>
+      </div>
+      <div class="form-group">
+        <label for="clientMessage">Mensagem (opcional):</label>
+        <textarea id="clientMessage" rows="3"></textarea>
+      </div>
+      <button type="button" id="sendWhatsApp" class="whatsapp-btn">
+        <i class="fa fa-whatsapp"></i> Receber confirmação por WhatsApp
+      </button>
+    </form>
+  </div>
+</div>
+
+<style>
+/* Estilos para o modal (novos estilos) */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.7);
+}
+
+.modal-content {
+  background-color: #16213e;
+  margin: 10% auto;
+  padding: 25px;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 500px;
+  color: white;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover {
+  color: white;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  color: #25D366;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #0f3460;
+  border-radius: 5px;
+  background: #0f3460;
+  color: white;
+}
+
+.whatsapp-btn {
+  background: #25D366;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  width: 100%;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.whatsapp-btn:hover {
+  background: #128C7E;
+}
+</style>
+
+<script>
+// ... (mantenha todo o JavaScript existente até o listener do botão confirm_ride) ...
+
+// Substitua o listener do botão de reserva por este:
+document.getElementById('confirm_ride').addEventListener('click', function() {
+  // Abre o modal em vez de mostrar alerta
+  document.getElementById('reservationModal').style.display = 'block';
+});
+
+// Fechar modal quando clicar no X
+document.querySelector('.close').addEventListener('click', function() {
+  document.getElementById('reservationModal').style.display = 'none';
+});
+
+// Fechar modal quando clicar fora dele
+window.addEventListener('click', function(event) {
+  if (event.target == document.getElementById('reservationModal')) {
+    document.getElementById('reservationModal').style.display = 'none';
+  }
+});
+
+// Enviar por WhatsApp
+document.getElementById('sendWhatsApp').addEventListener('click', function() {
+  const origin = document.getElementById('origin').value;
+  const destination = document.getElementById('destination').value;
+  const price = document.getElementById('estimated_price').textContent;
+  const name = document.getElementById('clientName').value;
+  const phone = document.getElementById('clientPhone').value;
+  const message = document.getElementById('clientMessage').value;
+  
+  // Validação básica
+  if (!name || !phone) {
+    alert('Por favor, preencha pelo menos seu nome e telefone');
+    return;
+  }
+  
+  // Formatar número de telefone (remover caracteres não numéricos)
+  const formattedPhone = phone.replace(/\D/g, '');
+  
+  // Criar mensagem para WhatsApp
+  const whatsappMessage = `Olá, eu sou ${name}!\n\n` +
+                         `Gostaria de confirmar minha reserva de transporte:\n` +
+                         `📍 De: ${origin}\n` +
+                         `🏁 Para: ${destination}\n` +
+                         `💵 Preço: ${price}\n\n` +
+                         `${message ? `Mensagem adicional: ${message}` : ''}`;
+  
+  // Codificar mensagem para URL
+  const encodedMessage = encodeURIComponent(whatsappMessage);
+  
+  // URL do WhatsApp com número e mensagem
+  const whatsappUrl = `https://wa.me/2389174019?text=${encodedMessage}`;
+  
+  // Abrir link em nova aba
+  window.open(whatsappUrl, '_blank');
+  
+  // Fechar o modal
+  document.getElementById('reservationModal').style.display = 'none';
+  
+  // Resetar o formulário
+  document.getElementById('reservationForm').reset();
+  
+  // Feedback visual no botão principal
+  const confirmBtn = document.getElementById('confirm_ride');
+  confirmBtn.innerHTML = '<i class="fa fa-check"></i> Reserva Confirmada';
+  setTimeout(() => {
+    confirmBtn.innerHTML = '<i class="fa fa-taxi"></i> Reservar Agora';
+  }, 3000);
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1521,7 +1729,7 @@ document.getElementById('confirm_ride').addEventListener('click', function() {
             <div class="container">
                <div class="row">
                   <div class=" col-md-4">
-                     <h3>Contact US</h3>
+                     <h3>Contacto</h3>
                      <ul class="conta">
                         <li><i class="fa fa-map-marker" aria-hidden="true"></i> Address</li>
                         <li><i class="fa fa-mobile" aria-hidden="true"></i>+238 917 40 19</li>
